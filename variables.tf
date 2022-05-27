@@ -50,6 +50,8 @@ variable "istio_nodeport" {
   default     = 30080
 }
 
+variable "kubernetes_api_port" { default = 6443 }
+
 variable "create_lb" {
   description = "Controls if ALB should be created"
   type        = bool
@@ -67,5 +69,3 @@ variable "http_tcp_listeners" {
   type        = any
   default     = []
 }
-
-variable "control_plane_id" {}
