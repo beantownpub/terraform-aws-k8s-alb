@@ -32,7 +32,7 @@ resource "aws_lb_target_group" "kubernetes_api" {
     unhealthy_threshold = 2
     timeout             = 2
     interval            = 5
-    matcher             = "200"
+    matcher             = "400"
   }
   tags = {
     Name = "kubernetes-api"
