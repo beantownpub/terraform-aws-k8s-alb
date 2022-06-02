@@ -39,6 +39,7 @@ No requirements.
 | <a name="input_env"></a> [env](#input\_env) | n/a | `any` | n/a | yes |
 | <a name="input_http_tcp_listeners"></a> [http\_tcp\_listeners](#input\_http\_tcp\_listeners) | A list of maps describing the HTTP listeners or TCP ports for this ALB. Required key/values: port, protocol. Optional key/values: target\_group\_index (defaults to http\_tcp\_listeners[count.index]) | `any` | `[]` | no |
 | <a name="input_internal"></a> [internal](#input\_internal) | Determines if ALB is internal or externally facing | `bool` | `false` | no |
+| <a name="input_istio_healthcheck_nodeport"></a> [istio\_healthcheck\_nodeport](#input\_istio\_healthcheck\_nodeport) | The nodeport for healthchecking istio-ingress | `number` | `32382` | no |
 | <a name="input_istio_nodeport"></a> [istio\_nodeport](#input\_istio\_nodeport) | The nodeport that the Istio ingress gateway is listening on | `number` | `30080` | no |
 | <a name="input_kubernetes_api_port"></a> [kubernetes\_api\_port](#input\_kubernetes\_api\_port) | n/a | `number` | `6443` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the ALB | `string` | n/a | yes |

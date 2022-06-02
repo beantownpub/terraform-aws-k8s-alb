@@ -23,7 +23,7 @@ module "alb" {
 resource "aws_lb_target_group" "kubernetes_api" {
   name     = "kubernetes-api"
   port     = var.kubernetes_api_port
-  protocol = "HTTPS"
+  protocol = "HTTP"
   vpc_id   = var.vpc_id
   health_check {
     path                = "/healthz"
@@ -36,7 +36,6 @@ resource "aws_lb_target_group" "kubernetes_api" {
   }
   tags = {
     Name = "kubernetes-api"
-    Role = "alb"
   }
 }
 
@@ -46,17 +45,16 @@ resource "aws_lb_target_group" "kubernetes_workers" {
   protocol = "HTTP"
   vpc_id   = var.vpc_id
   health_check {
-    path                = "/healthz"
-    port                = var.istio_nodeport
+    path                = "/healthz/ready"
+    port                = var.istio_healthcheck_nodeport
     healthy_threshold   = 6
     unhealthy_threshold = 2
     timeout             = 2
     interval            = 5
-    matcher             = "404"
+    matcher             = "200"
   }
   tags = {
     Name = "kubernetes-workers"
-    Role = "alb"
   }
 }
 
@@ -72,7 +70,6 @@ resource "aws_lb_listener" "kubernete_api" {
   }
   tags = {
     Name = "kubernetes-api"
-    Role = "alb"
   }
 }
 
@@ -88,7 +85,6 @@ resource "aws_lb_listener" "frontend_https" {
   }
   tags = {
     Name = "frontend-https"
-    Role = "alb"
   }
 }
 
@@ -106,6 +102,5 @@ resource "aws_lb_listener" "frontend_http" {
   }
   tags = {
     Name = "frontend-http"
-    Role = "alb"
   }
 }

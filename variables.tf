@@ -50,6 +50,11 @@ variable "istio_nodeport" {
   default     = 30080
 }
 
+variable "istio_healthcheck_nodeport" {
+  description = "The nodeport for healthchecking istio-ingress"
+  default     = 32382
+}
+
 variable "kubernetes_api_port" { default = 6443 }
 
 variable "create_lb" {
