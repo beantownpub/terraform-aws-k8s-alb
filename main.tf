@@ -43,7 +43,7 @@ resource "aws_lb_target_group" "kubernetes_api" {
 resource "aws_lb_target_group" "kubernetes_workers" {
   name     = "kubernetes-workers"
   port     = var.istio_nodeport
-  protocol = "HTTPS"
+  protocol = "HTTP"
   vpc_id   = var.vpc_id
   health_check {
     path                = "/healthz/ready"
