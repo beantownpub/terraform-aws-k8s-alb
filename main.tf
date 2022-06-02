@@ -23,11 +23,12 @@ module "alb" {
 resource "aws_lb_target_group" "kubernetes_api" {
   name     = "kubernetes-api"
   port     = var.kubernetes_api_port
-  protocol = "HTTP"
+  protocol = "HTTPS"
   vpc_id   = var.vpc_id
   health_check {
     path                = "/healthz"
     port                = var.kubernetes_api_port
+    protocol            = "HTTPS"
     healthy_threshold   = 6
     unhealthy_threshold = 2
     timeout             = 2
@@ -42,7 +43,7 @@ resource "aws_lb_target_group" "kubernetes_api" {
 resource "aws_lb_target_group" "kubernetes_workers" {
   name     = "kubernetes-workers"
   port     = var.istio_nodeport
-  protocol = "HTTP"
+  protocol = "HTTPS"
   vpc_id   = var.vpc_id
   health_check {
     path                = "/healthz/ready"
